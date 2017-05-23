@@ -23,8 +23,6 @@ curl \
 git \
 wget \
 nano \
-apt-transport-https \
-azure-cli \
 && rm -rf /var/lib/apt/lists/*
 
 ## Install PowerShell for Linux
@@ -36,3 +34,7 @@ RUN rm powershell_linux.deb
 RUN curl -L $CHEFDK_DOWNLOAD_URL --output chefdk_ubuntu.deb
 RUN dpkg -i chefdk_ubuntu.deb
 RUN rm chefdk_ubuntu.deb
+
+## Install Azure CLi
+RUN apt-get -y install apt-transport-https
+RUN apt-get -y install azure-cli
