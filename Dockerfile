@@ -26,6 +26,13 @@ wget \
 nano \
 && rm -rf /var/lib/apt/lists/*
 
+## Install Azure CLI
+RUN echo "deb https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list
+RUN apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
+RUN apt-get update
+RUN apt-get -y install apt-transport-https
+RUN apt-get -y install azure-cli
+
 ## Install PowerShell for Linux
 RUN curl -L $POWERSHELL_DOWNLOAD_URL --output powershell_linux.deb
 RUN dpkg -i powershell_linux.deb
@@ -35,9 +42,3 @@ RUN rm powershell_linux.deb
 RUN curl -L $CHEFDK_DOWNLOAD_URL --output chefdk_ubuntu.deb
 RUN dpkg -i chefdk_ubuntu.deb
 RUN rm chefdk_ubuntu.deb
-
-## Install Azure CLI
-RUN echo "deb https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list
-RUN apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
-RUN apt-get -y install apt-transport-https
-RUN apt-get -y install azure-cli
