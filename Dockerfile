@@ -3,6 +3,9 @@ FROM ubuntu:latest
 ENV POWERSHELL_DOWNLOAD_URL=https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.1/powershell_6.0.0-beta.1-1ubuntu1.16.04.1_amd64.deb
 ENV CHEFDK_DOWNLOAD_URL https://packages.chef.io/files/stable/chefdk/1.4.3/ubuntu/16.04/chefdk_1.4.3-1_amd64.deb
 
+RUN echo "deb https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list
+RUN apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
+
 RUN apt-get update \
 && apt-get install -y --no-install-recommends \
 libc6 \
@@ -27,11 +30,8 @@ nano \
 && rm -rf /var/lib/apt/lists/*
 
 ## Install Azure CLI
-RUN echo "deb https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list
-RUN apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
-RUN apt-get update
 RUN apt-get -y install apt-transport-https
-RUN apt-get -y install azure-cli
+RUN apt-get update && apt-get -y install azure-cli
 
 ## Install PowerShell for Linux
 RUN curl -L $POWERSHELL_DOWNLOAD_URL --output powershell_linux.deb
