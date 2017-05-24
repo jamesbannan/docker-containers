@@ -10,6 +10,23 @@ RUN apt-key adv --keyserver packages.microsoft.com --recv-keys 417A0893
 RUN apt-get -y install apt-transport-https
 RUN apt-get update && apt-get -y install azure-cli
 
+RUN apt-get update \
+&& apt-get install -y --no-install-recommends \
+libc6 \
+libcurl3 \
+ca-certificates \
+libgcc1 \
+libicu55 \
+libssl1.0.0 \
+libstdc++6 \
+libtinfo5 \
+libunwind8 \
+libuuid1 \
+zlib1g \
+curl \
+git \
+&& rm -rf /var/lib/apt/lists/*
+
 ## Install PowerShell for Linux
 RUN curl -L $POWERSHELL_DOWNLOAD_URL --output powershell_linux.deb
 RUN dpkg -i powershell_linux.deb
