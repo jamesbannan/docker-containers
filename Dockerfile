@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 ENV POWERSHELL_DOWNLOAD_URL=https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.1/powershell_6.0.0-beta.1-1ubuntu1.16.04.1_amd64.deb
-ENV CHEFDK_DOWNLOAD_URL https://packages.chef.io/files/stable/chefdk/1.4.3/ubuntu/16.04/chefdk_1.4.3-1_amd64.deb
+ENV CHEFDK_DOWNLOAD_URL=https://packages.chef.io/files/stable/chefdk/1.4.3/ubuntu/16.04/chefdk_1.4.3-1_amd64.deb
 
 ## Install Azure CLI
 RUN apt-get update && apt-get install -y libssl-dev libffi-dev python-dev build-essential
