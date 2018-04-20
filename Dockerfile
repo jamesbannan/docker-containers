@@ -3,6 +3,10 @@ FROM ubuntu:16.04
 ## Define environmental variables
 ENV AZ_REPO='lsb_release -cs'
 
+## Install dependencies
+RUN apt-get -y update
+RUN apt-get -y install curl
+
 ## Update apt sources
 RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list
 RUN apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
