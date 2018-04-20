@@ -1,4 +1,4 @@
-FROM ubuntu:16:04
+FROM ubuntu:16.04
 
 ## Define environmental variables
 ENV AZ_REPO='lsb_release -cs'
