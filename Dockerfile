@@ -26,5 +26,8 @@ RUN apt-get -y update && apt-get -y install powershell
 ## Install .NET Core SDK
 RUN apt-get -y install dotnet-sdk-$DOTNETCORE_VER
 
+## Install node.js and npm
+RUN apt-get install -y nodejs npm
+
 ## Install Azure PowerShell for .NET Core
 RUN pwsh -Command "& {Install-Module AzureRM.NetCore -Force -Confirm:\$False}"
